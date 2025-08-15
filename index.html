@@ -1,308 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Base -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <title>WaitMateNYC — Beat the lines in NYC</title>
-
-  <!-- SEO -->
-  <meta name="description" content="WaitMateNYC shows real-time restaurant wait times across NYC. Discover spots, compare waits on a live map, set alerts, and go when the line is short." />
-  <link rel="canonical" href="https://bagalematthew.github.io/waitmatenyc/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="WaitMateNYC — Beat the lines in NYC" />
-  <meta property="og:description" content="Live wait times, smarter choices, less waiting." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bagalematthew.github.io/waitmatenyc/" />
-  <meta property="og:image" content="splash_lady_liberty.png" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="WaitMateNYC — Beat the lines in NYC" />
-  <meta name="twitter:description" content="Live wait times, smarter choices, less waiting." />
-  <meta name="twitter:image" content="splash_lady_liberty.png" />
-
-  <!-- Icons -->
-  <link rel="icon" href="splash_lady_liberty.png" />
-  <link rel="apple-touch-icon" href="splash_lady_liberty.png" />
-
-  <!-- Fonts + CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>WaitMateNYC</title>
+  <meta name="description" content="WaitMateNYC - The mobile app that helps you beat the lines in NYC.">
+  <link rel="icon" href="splash_lady_liberty.png">
+  <style>
+    /* Apple-style font and colors */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #1d1d1f;
+    }
+    nav {
+      background: #fff;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2em 2em;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+    .logo img {
+      height: 34px;
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.1em;
+      letter-spacing: 0.01em;
+      color: #1d1d1f;
+    }
+    .nav-links a {
+      color: #1d1d1f;
+      text-decoration: none;
+      margin-left: 2em;
+      font-weight: 400;
+      font-size: 1em;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+    }
+    .hero {
+      text-align: center;
+      padding: 4em 1em 2em 1em;
+      background: #fff;
+    }
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 0.2em;
+      letter-spacing: -.01em;
+      line-height: 1.05;
+    }
+    .hero-content .subtitle {
+      font-size: 1.5em;
+      color: #6e6e73;
+      margin-bottom: 1.5em;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .cta-btn {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 1em 2.4em;
+      font-size: 1.1em;
+      border-radius: 36px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(25, 118, 210, 0.1);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 1em;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background: #135ab6;
+    }
+    section {
+      padding: 3em 1em;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin-bottom: 1em;
+      text-align: center;
+      letter-spacing: -.01em;
+    }
+    .features-list {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3em;
+    }
+    .feature {
+      background: #f5f5f7;
+      border-radius: 18px;
+      padding: 1.5em 1.2em;
+      flex: 1 1 260px;
+      min-width: 210px;
+      max-width: 280px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      margin-bottom: 1.5em;
+    }
+    .feature img {
+      height: 40px;
+      margin-bottom: 0.7em;
+      filter: invert(32%) sepia(91%) saturate(1821%) hue-rotate(191deg) brightness(89%) contrast(95%);
+    }
+    .screenshots {
+      display: flex;
+      gap: 2em;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+    .screenshots img {
+      border-radius: 20px;
+      max-width: 270px;
+      box-shadow: 0 8px 32px rgba(25, 118, 210, 0.07);
+      background: #fff;
+      border: 1px solid #f5f5f7;
+    }
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      margin-bottom: 2em;
+      margin-top: 1em;
+    }
+    .store-btn {
+      background: #f5f5f7;
+      color: #1d1d1f;
+      padding: 0.8em 2em;
+      border-radius: 18px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #e3e3e3;
+      transition: background 0.2s;
+      font-size: 1em;
+    }
+    .store-btn:hover {
+      background: #e3eaf7;
+    }
+    footer {
+      background: #f5f5f7;
+      color: #6e6e73;
+      text-align: center;
+      padding: 2.5em 1em 1.5em 1em;
+      margin-top: 2em;
+      font-size: 1.05em;
+    }
+    footer a {
+      color: #1976d2;
+      margin: 0 0.6em;
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: #135ab6;
+    }
+    .copyright {
+      font-size: 0.95em;
+      color: #a1a1a6;
+      margin-top: 1.5em;
+    }
+    @media (max-width: 700px) {
+      .features-list, .screenshots {
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+      }
+      nav {
+        flex-direction: column;
+        gap: 1em;
+        padding: 1em 0.7em;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- ================= NAV ================= -->
-  <header class="site-header glass" data-elevate>
-    <nav class="nav">
-      <a href="#top" class="brand">
-        <img src="splash_lady_liberty.png" alt="" class="brand-mark" />
-        <span class="brand-name">WaitMateNYC</span>
-      </a>
-      <div class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#gallery">Screens</a>
-        <a href="#download" class="cta sm">Get the app</a>
-      </div>
-    </nav>
+  <nav>
+    <span class="logo">
+      <img src="splash_lady_liberty.png" alt="WaitMateNYC Logo">
+      WaitMateNYC
+    </span>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Beat the lines in NYC.</h1>
+      <p class="subtitle">Real-time wait times. Smarter choices. Less waiting.</p>
+      <a href="#download" class="cta-btn">Get the App</a>
+    </div>
   </header>
-
-  <!-- ================= HERO ================= -->
-  <main id="top">
-    <section class="hero">
-      <!-- Gradient Orbs -->
-      <div class="orb orb-a" aria-hidden="true"></div>
-      <div class="orb orb-b" aria-hidden="true"></div>
-      <div class="orb orb-c" aria-hidden="true"></div>
-
-      <div class="hero-inner">
-        <h1 class="hero-title">
-          Beat the lines in NYC<span class="hero-dot">.</span>
-        </h1>
-        <p class="hero-sub">
-          Live wait times across the city. Compare, plan, and go when it’s short.
-        </p>
-        <div class="hero-ctas">
-          <a class="cta lg" href="#download">Get the app</a>
-          <a class="cta ghost" href="#gallery" aria-label="See app screens">See the app</a>
-        </div>
-
-        <!-- Framed device cluster -->
-        <div class="device-stage">
-          <figure class="device tilt" role="img" aria-label="Discover screen showing top picks">
-            <img src="simulator_screenshot_7E489C10-897B-43A8-A689-92E5E292598E.png" alt="App discover screen" />
-          </figure>
-          <figure class="device tilt delay-1" role="img" aria-label="Map screen with live wait pins">
-            <img src="simulator_screenshot_9B341EF5-F785-4F7E-A571-10F29AAB07AB.png" alt="App map screen" />
-          </figure>
-        </div>
-
-        <div class="hero-meta">
-          <span class="chip">Real‑time</span>
-          <span class="chip">Community‑powered</span>
-          <span class="chip">Privacy‑friendly</span>
-        </div>
+  
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features-list">
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/time.png" alt="Real-Time Waits">
+        <h3>Live Wait Times</h3>
+        <p>See current wait times for popular NYC spots.</p>
       </div>
-    </section>
-
-    <!-- ================= HOW ================= -->
-    <section id="how" class="how">
-      <div class="section-head">
-        <h2>How it works</h2>
-        <p>Four swift steps to spend less time waiting and more time eating.</p>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/map.png" alt="Map">
+        <h3>Smart Maps</h3>
+        <p>Find venues near you and compare wait times instantly.</p>
       </div>
-
-      <div class="how-grid">
-        <article class="card glass pop" data-io>
-          <div class="step">01</div>
-          <h3>Discover</h3>
-          <p>Browse curated picks or search thousands of NYC spots. See what’s buzzing now.</p>
-        </article>
-
-        <article class="card glass pop" data-io>
-          <div class="step">02</div>
-          <h3>Check live waits</h3>
-          <p>Compare real‑time waits on a city map. Color‑coded pins show what’s short, medium, or long.</p>
-        </article>
-
-        <article class="card glass pop" data-io>
-          <div class="step">03</div>
-          <h3>Set alerts</h3>
-          <p>Pick a place and get notified when the wait drops below your threshold.</p>
-        </article>
-
-        <article class="card glass pop" data-io>
-          <div class="step">04</div>
-          <h3>Go now</h3>
-          <p>Head out when the line is light. Directions and booking links are one tap away.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ================= GALLERY (Product) ================= -->
-    <section id="gallery" class="gallery">
-      <div class="section-head">
-        <h2>Designed for the city</h2>
-        <p>Clean, fast, and glass — mirroring the app’s aesthetic.</p>
-      </div>
-
-      <div class="rail" data-io>
-        <figure class="shot glass">
-          <figcaption>Top Picks</figcaption>
-          <img loading="lazy" src="simulator_screenshot_7E489C10-897B-43A8-A689-92E5E292598E.png" alt="Discover carousel with wait pills" />
-        </figure>
-        <figure class="shot glass">
-          <figcaption>Live Map</figcaption>
-          <img loading="lazy" src="simulator_screenshot_9B341EF5-F785-4F7E-A571-10F29AAB07AB.png" alt="Map view with color-coded pins" />
-        </figure>
-        <figure class="shot glass">
-          <figcaption>Details</figcaption>
-          <img loading="lazy" src="simulator_screenshot_7E489C10-897B-43A8-A689-92E5E292598E.png" alt="Restaurant detail with photos and actions" />
-        </figure>
-      </div>
-    </section>
-
-    <!-- ================= FEATURES ================= -->
-    <section id="features" class="features">
-      <div class="section-head">
-        <h2>Features</h2>
-        <p>Everything you need to choose smarter — at a glance.</p>
-      </div>
-
-      <div class="features-grid">
-        <article class="feature glass" data-io>
-          <h3>Live Wait Times</h3>
-          <p>Citywide coverage that updates constantly, so you always know before you go.</p>
-        </article>
-        <article class="feature glass" data-io>
-          <h3>Smart Map</h3>
-          <p>See wait trends by neighborhood. Zoom in for precise pins; zoom out for the big picture.</p>
-        </article>
-        <article class="feature glass" data-io>
-          <h3>Personalized Picks</h3>
-          <p>Favorites and cuisine preferences power tailored recommendations.</p>
-        </article>
-        <article class="feature glass" data-io>
-          <h3>Alerts</h3>
-          <p>Get a nudge when your wait target hits. Set days and time windows.</p>
-        </article>
-        <article class="feature glass" data-io>
-          <h3>Community‑Driven</h3>
-          <p>Share a quick observation to help everyone win back time.</p>
-        </article>
-        <article class="feature glass" data-io>
-          <h3>Built for Privacy</h3>
-          <p>No tracking across apps. Only the essentials to make timing great.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ================= UPDATE / WHAT'S NEW ================= -->
-    <section class="whats-new">
-      <div class="section-head">
-        <h2>What’s new</h2>
-        <p>We’re polishing daily. Here’s what just landed.</p>
-      </div>
-
-      <ul class="changelog glass" data-io>
-        <li><strong>Discover refresh</strong> — new hero carousel, brunch & late‑night sections.</li>
-        <li><strong>Smarter alerts</strong> — choose days and hours to avoid unnecessary pings.</li>
-        <li><strong>Map controls</strong> — quick zoom & recenter with gentle animations.</li>
-      </ul>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="faq">
-      <div class="section-head">
-        <h2>FAQ</h2>
-        <p>Quick answers to common questions.</p>
-      </div>
-
-      <div class="faq-list">
-        <details class="glass" data-io>
-          <summary>Where do wait times come from?</summary>
-          <p>Observations from the WaitMate community combined with signals from public sources. We bias toward fresh, local inputs.</p>
-        </details>
-        <details class="glass" data-io>
-          <summary>Do I need an account?</summary>
-          <p>No account is required to browse. Save favorites and alerts optionally with local settings.</p>
-        </details>
-        <details class="glass" data-io>
-          <summary>Is there Android support?</summary>
-          <p>iOS first, with Android planned. Join the list below to hear when it’s ready.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- ================= DOWNLOAD ================= -->
-    <section id="download" class="download">
-      <div class="download-inner glass">
-        <h2>Get WaitMateNYC</h2>
-        <p>Available soon on the App Store and Google Play.</p>
-        <div class="store-row">
-          <!-- Replace # with real links when live -->
-          <a class="store-btn apple" href="#" aria-label="Download on the App Store">App&nbsp;Store</a>
-          <a class="store-btn google" href="#" aria-label="Get it on Google Play">Google&nbsp;Play</a>
-        </div>
-
-        <form class="email-capture" onsubmit="event.preventDefault(); window.alert('Thanks! We’ll keep you posted.');">
-          <label class="visually-hidden" for="email">Email</label>
-          <input id="email" type="email" required placeholder="Enter email for launch updates" />
-          <button class="cta" type="submit">Notify me</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <a href="#top" class="brand">
-          <img src="splash_lady_liberty.png" alt="" class="brand-mark" />
-          <span class="brand-name">WaitMateNYC</span>
-        </a>
-        <p class="muted">Smarter timing for a city that never stops.</p>
-      </div>
-
-      <div>
-        <h4>Links</h4>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#gallery">Screens</a></li>
-          <li><a href="#download">Download</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <!-- Update to your real email + socials -->
-          <li><a href="mailto:your@email.com">Email us</a></li>
-          <li><a href="https://twitter.com/" target="_blank" rel="noopener">Twitter</a></li>
-          <li><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
-        </ul>
+      <div class="feature">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/like.png" alt="Community">
+        <h3>Community Driven</h3>
+        <p>Share wait info and help others save time.</p>
       </div>
     </div>
-    <p class="copyright">© <span id="year"></span> WaitMateNYC. All rights reserved.</p>
+  </section>
+  
+  <section id="download" class="download-section">
+    <h2>Download WaitMateNYC</h2>
+    <p>Available soon on the App Store & Google Play</p>
+    <div class="download-buttons">
+      <a href="#" class="store-btn apple">App Store</a>
+      <a href="#" class="store-btn google">Google Play</a>
+    </div>
+    <div class="screenshots">
+      <img src="simulator_screenshot_7E489C10-897B-43A8-A689-92E5E292598E.png" alt="Discover Screen">
+      <img src="simulator_screenshot_9B341EF5-F785-4F7E-A571-10F29AAB07AB.png" alt="Map Screen">
+    </div>
+  </section>
+  
+  <footer id="contact">
+    <h2>Contact & Social</h2>
+    <p>Questions or feedback? <a href="mailto:your@email.com">Email us</a></p>
+    <div class="social-links">
+      <a href="https://twitter.com/" target="_blank">Twitter</a>
+      <a href="https://instagram.com/" target="_blank">Instagram</a>
+      <a href="https://facebook.com/" target="_blank">Facebook</a>
+    </div>
+    <p class="copyright">&copy; 2025 WaitMateNYC. All rights reserved.</p>
   </footer>
-
-  <!-- ================= JS (tiny, for polish) ================= -->
-  <script>
-    // current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // intersection-based reveal
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('in');
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('[data-io]').forEach(el => io.observe(el));
-
-    // subtle tilt on hero devices
-    const tilts = document.querySelectorAll('.tilt');
-    window.addEventListener('mousemove', (e) => {
-      const { innerWidth:w, innerHeight:h } = window;
-      const rx = ((e.clientY / h) - 0.5) * -6;
-      const ry = ((e.clientX / w) - 0.5) *  8;
-      tilts.forEach(t => t.style.setProperty('--rx', rx.toFixed(2) + 'deg'));
-      tilts.forEach(t => t.style.setProperty('--ry', ry.toFixed(2) + 'deg'));
-    });
-
-    // elevate header on scroll
-    const header = document.querySelector('[data-elevate]');
-    let lastY = 0;
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      header.classList.toggle('elevated', y > 12 && y >= lastY);
-      lastY = y;
-    }, { passive: true });
-  </script>
 </body>
 </html>
