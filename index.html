@@ -7,6 +7,99 @@
   <meta name="description" content="WaitMateNYC - The mobile app that helps you beat the lines in NYC.">
   <link rel="icon" href="splash_lady_liberty.png">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Responsive Dropdown Styles --- */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2em;
+      position: relative;
+    }
+    .dropdown {
+      position: relative;
+      display: none; /* Hidden on desktop */
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font: inherit;
+      color: #1d1d1f;
+      font-weight: 400;
+      font-size: 1em;
+      cursor: pointer;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s;
+    }
+    .dropdown-btn:hover, .dropdown-btn:focus {
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 2.3em;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 16px rgba(60,70,120,0.11);
+      border-radius: 20px;
+      min-width: 180px;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 0.5em 0;
+    }
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      display: block;
+      color: #1d1d1f;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 400;
+      padding: 0.8em 1.2em;
+      border-radius: 14px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .dropdown-content a:hover {
+      background: #e3eaf7;
+      color: #1976d2;
+    }
+
+    @media (max-width: 700px) {
+      .nav-links > a:not(.for-mobile) {
+        display: none;
+      }
+      .dropdown {
+        display: block;
+      }
+    }
+    @media (min-width: 701px) {
+      .dropdown {
+        display: none;
+      }
+      .nav-links > a:not(.for-mobile) {
+        display: inline-block;
+      }
+    }
+  </style>
+  <script>
+    // Dropdown menu toggle for mobile
+    document.addEventListener("DOMContentLoaded", function() {
+      var dropdownBtn = document.querySelector('.dropdown-btn');
+      var dropdown = document.querySelector('.dropdown');
+      if (dropdownBtn && dropdown) {
+        dropdownBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          dropdown.classList.toggle('show');
+        });
+        document.body.addEventListener('click', function() {
+          dropdown.classList.remove('show');
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="bg-gradient"></div>
@@ -16,9 +109,19 @@
       WaitMateNYC
     </span>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#download">Download</a>
-      <a href="#contact">Contact</a>
+      <a href="#features" class="for-mobile">Features</a>
+      <a href="#download" class="for-mobile">Download</a>
+      <a href="#contact" class="for-mobile">Contact</a>
+      <!-- Dropdown for mobile/iOS -->
+      <div class="dropdown">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Legal & Support ▼</button>
+        <div class="dropdown-content">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="support.html">Support & FAQ</a>
+        </div>
+      </div>
+      <!-- Desktop links -->
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Use</a>
       <a href="support.html">Support & FAQ</a>
