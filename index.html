@@ -8,96 +8,150 @@
   <link rel="icon" href="splash_lady_liberty.png">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* --- Responsive Dropdown Styles --- */
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 102;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 26px;
+      margin: 4px 0;
+      background: #1d1d1f;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 1.2em;
+      gap: 1.7em;
       position: relative;
     }
-    .dropdown {
-      position: relative;
-      display: none; /* Hidden on desktop */
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 62px;
+        left: 0;
+        width: 100vw;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(255,255,255,0.96);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        padding: 2em 1.7em 2em 1.7em;
+        z-index: 101;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+        margin-left: auto;
+      }
+      nav {
+        position: relative;
+      }
     }
-    .dropdown-btn {
-      background: none;
-      border: none;
-      font: inherit;
-      color: #1d1d1f;
-      font-weight: 400;
-      font-size: 1em;
-      cursor: pointer;
-      padding-bottom: 2px;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s;
+    @media (min-width: 801px) {
+      .hamburger {
+        display: none;
+      }
+      .nav-links {
+        display: flex !important;
+      }
     }
-    .dropdown-btn:hover, .dropdown-btn:focus {
-      color: #1976d2;
-      border-bottom: 2px solid #1976d2;
+    /* Hamburger active state */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
     }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      left: 0;
-      top: 2.3em;
-      background: rgba(255,255,255,0.95);
-      box-shadow: 0 4px 16px rgba(60,70,120,0.11);
-      border-radius: 20px;
-      min-width: 180px;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 0.5em 0;
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
     }
-    .dropdown.show .dropdown-content {
-      display: block;
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
-    .dropdown-content a {
-      display: block;
+    /* Nav link styles */
+    .nav-links a {
       color: #1d1d1f;
       text-decoration: none;
-      font-size: 1em;
       font-weight: 400;
-      padding: 0.8em 1.2em;
-      border-radius: 14px;
-      transition: background 0.18s, color 0.18s;
+      font-size: 1em;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      border-radius: 8px;
+      width: fit-content;
     }
-    .dropdown-content a:hover {
-      background: #e3eaf7;
+    .nav-links a:hover {
       color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+      background: #e3eaf7;
     }
-
-    @media (max-width: 700px) {
-      .nav-links > a:not(.for-mobile) {
-        display: none;
-      }
-      .dropdown {
-        display: block;
-      }
+    .nav-links .social-links {
+      margin-top: 1em;
+      margin-bottom: 0;
+      color: #aaa;
+      font-size: 0.98em;
     }
-    @media (min-width: 701px) {
-      .dropdown {
-        display: none;
-      }
-      .nav-links > a:not(.for-mobile) {
-        display: inline-block;
-      }
+    /* Ensure nav sticks to top and overlays content */
+    nav {
+      background: rgba(255,255,255,0.60);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2em 2em;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.32);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+    }
+    .logo img {
+      height: 34px;
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.1em;
+      letter-spacing: 0.01em;
+      color: #1d1d1f;
     }
   </style>
   <script>
-    // Dropdown menu toggle for mobile
     document.addEventListener("DOMContentLoaded", function() {
-      var dropdownBtn = document.querySelector('.dropdown-btn');
-      var dropdown = document.querySelector('.dropdown');
-      if (dropdownBtn && dropdown) {
-        dropdownBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          dropdown.classList.toggle('show');
-        });
-        document.body.addEventListener('click', function() {
-          dropdown.classList.remove('show');
-        });
-      }
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('show');
+      });
+      // Close menu if clicking outside
+      document.body.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('show');
+      });
+      navLinks.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
     });
   </script>
 </head>
@@ -108,23 +162,21 @@
       <img src="splash_lady_liberty.png" alt="WaitMateNYC Logo">
       WaitMateNYC
     </span>
-    <div class="nav-links">
-      <a href="#features" class="for-mobile">Features</a>
-      <a href="#download" class="for-mobile">Download</a>
-      <a href="#contact" class="for-mobile">Contact</a>
-      <!-- Dropdown for mobile/iOS -->
-      <div class="dropdown">
-        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Legal & Support ▼</button>
-        <div class="dropdown-content">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Use</a>
-          <a href="support.html">Support & FAQ</a>
-        </div>
-      </div>
-      <!-- Desktop links -->
+    <button class="hamburger" aria-label="Open menu" aria-haspopup="true" aria-controls="main-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links" id="main-menu">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#contact">Contact</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Use</a>
       <a href="support.html">Support & FAQ</a>
+      <div class="social-links">
+        Twitter Instagram Facebook
+      </div>
     </div>
   </nav>
   <header class="hero glass-card">
@@ -134,7 +186,6 @@
       <a href="#download" class="cta-btn">Get the App</a>
     </div>
   </header>
-  
   <section id="features" class="glass-card">
     <h2>Features</h2>
     <div class="features-list">
@@ -155,7 +206,6 @@
       </div>
     </div>
   </section>
-  
   <section id="download" class="download-section glass-card">
     <h2>Download WaitMateNYC</h2>
     <div class="download-buttons">
@@ -166,7 +216,6 @@
       <img src="simulator_screenshot_9B341EF5-F785-4F7E-A571-10F29AAB07AB.png" alt="Map Screen" class="glass-inner">
     </div>
   </section>
-  
   <footer id="contact" class="glass-card">
     <h2>Contact</h2>
     <p>Questions or feedback? <a href="mailto:support@waitmatenyc.com">Email us</a></p>
