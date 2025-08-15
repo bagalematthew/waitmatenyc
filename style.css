@@ -262,11 +262,6 @@ footer a:hover {
     align-items: center;
     min-height: unset;
   }
-  .feature {
-    padding: 0.7em 0.7em;
-    min-height: unset;
-    max-width: 96vw;
-  }
   .screenshots {
     padding-left: 2vw;
     padding-right: 2vw;
